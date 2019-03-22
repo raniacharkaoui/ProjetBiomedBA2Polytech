@@ -141,13 +141,15 @@ ani_bpm = animation.FuncAnimation(fig_bpm, run_bpm, interval=1000,
 ani_pas = animation.FuncAnimation(fig_pas, run_pas, interval=1000,
                               repeat=True, init_func=init_pas)
 if len(latitude) > 1:
-    m = folium.Map([50.812481, 4.382950], zoom_start=20)
-    my_PolyLine=folium.PolyLine(locations=list(zip(latitude, longitude)),weight=3)
+    m = folium.Map([50.812481, 4.382950], zoom_start=20) #on commence au niveau du Square Groupe G
+    my_PolyLine = folium.PolyLine(locations=list(zip(latitude, longitude)),weight=3)
     m.add_children(my_PolyLine)
-    m.save("C:/Users/Hassan/Desktop/map4.html")
-    driver.get("C:/Users/Hassan/Desktop/map4.html")
+    folium.Marker([latitude[0], longitude[0]], popup='<b>Point de départ</b>', tooltip=tooltip).add_to(m)
+    m.save("/Users/raniacharkaoui/Documents/mapselenium.html")
+    driver.get("file:///Users/raniacharkaoui/Documents/mapselenium.html")
+    time.sleep(5)
 
-plt.autoscale() #AUTOSCALE DE LA FIGURE BPM, si pose problèmes supprimez ! 
+plt.autoscale() 
 client.loop_start()                              
 plt.show()
 
